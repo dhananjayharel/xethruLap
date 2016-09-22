@@ -2,5 +2,9 @@
     {
         "merged": "D:\\SerialPortExample-master\\SerialPortExample-master\\AndroidUSBSerialMonitorLite4\\fTDriver\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\main.xml",
         "source": "D:\\SerialPortExample-master\\SerialPortExample-master\\AndroidUSBSerialMonitorLite4\\fTDriver\\build\\intermediates\\bundles\\debug\\res\\layout\\main.xml"
+    },
+    {
+        "merged": "D:\\xethruLap\\fTDriver\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\main.xml",
+        "source": "D:\\xethruLap\\fTDriver\\build\\intermediates\\bundles\\debug\\res\\layout\\main.xml"
     }
 ]

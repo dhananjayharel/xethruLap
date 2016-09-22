@@ -2,25 +2,25 @@
 <items version="2" >
 
     <item
-        jar="D:\SerialPortExample-master\SerialPortExample-master\AndroidUSBSerialMonitorLite4\androidUSBSerialMonitorLite\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jar="D:\xethruLap\androidUSBSerialMonitorLite\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
         jumboMode="true"
         revision="23.0.2"
-        sha1="79dca99923da3f3102cdd9e473ab91230ab4bd4e">
-        <dex dex="D:\SerialPortExample-master\SerialPortExample-master\AndroidUSBSerialMonitorLite4\androidUSBSerialMonitorLite\build\intermediates\pre-dexed\debug\instant-run-bootstrap_f6698d207621c0c227f297da7954bf226f9374d0.jar" />
-    </item>
-    <item
-        jar="D:\SerialPortExample-master\SerialPortExample-master\AndroidUSBSerialMonitorLite4\androidUSBSerialMonitorLite\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
-        jumboMode="true"
-        revision="23.0.2"
-        sha1="e0c7ad5dcfe82388a23cf1f5db0849906464bc52">
-        <dex dex="D:\SerialPortExample-master\SerialPortExample-master\AndroidUSBSerialMonitorLite4\androidUSBSerialMonitorLite\build\intermediates\pre-dexed\debug\instant-run_322e82aa931c8b832163f99dfd28dc119da53139.jar" />
+        sha1="9df19a89253c0d0d4c62f7652c6d96726d9850d1">
+        <dex dex="D:\xethruLap\androidUSBSerialMonitorLite\build\intermediates\pre-dexed\debug\instant-run_102142a8e56e495e20c40ecef04cd7ee5157443e.jar" />
     </item>
     <item
         jar="D:\SerialPortExample-master\SerialPortExample-master\AndroidUSBSerialMonitorLite4\libs\mpandroidchartlibrary-2-2-4.jar"
         jumboMode="true"
         revision="23.0.2"
         sha1="e5455fb794bfcbeb75da252dffd907794614f7fd">
-        <dex dex="D:\SerialPortExample-master\SerialPortExample-master\AndroidUSBSerialMonitorLite4\androidUSBSerialMonitorLite\build\intermediates\pre-dexed\debug\mpandroidchartlibrary-2-2-4_10d7ffea4dc3ba6ef459c77d2449afea9a73afac.jar" />
+        <dex dex="D:\xethruLap\androidUSBSerialMonitorLite\build\intermediates\pre-dexed\debug\mpandroidchartlibrary-2-2-4_10d7ffea4dc3ba6ef459c77d2449afea9a73afac.jar" />
+    </item>
+    <item
+        jar="D:\xethruLap\androidUSBSerialMonitorLite\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="809ac40b3cf75f77ca73bb4d5393237b4110611c">
+        <dex dex="D:\xethruLap\androidUSBSerialMonitorLite\build\intermediates\pre-dexed\debug\instant-run-bootstrap_543a4869413d7e9ffa551786a691a4d9e34beb9c.jar" />
     </item>
 
 </items>
