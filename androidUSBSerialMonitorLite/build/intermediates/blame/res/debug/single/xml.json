@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "D:\\SerialPortExample-master\\SerialPortExample-master\\AndroidUSBSerialMonitorLite4\\androidUSBSerialMonitorLite\\build\\intermediates\\res\\merged\\debug\\xml\\pref_inner.xml",
+        "source": "D:\\SerialPortExample-master\\SerialPortExample-master\\AndroidUSBSerialMonitorLite4\\androidUSBSerialMonitorLite\\src\\main\\res\\xml\\pref_inner.xml"
+    },
+    {
+        "merged": "D:\\SerialPortExample-master\\SerialPortExample-master\\AndroidUSBSerialMonitorLite4\\androidUSBSerialMonitorLite\\build\\intermediates\\res\\merged\\debug\\xml\\device_filter.xml",
+        "source": "D:\\SerialPortExample-master\\SerialPortExample-master\\AndroidUSBSerialMonitorLite4\\androidUSBSerialMonitorLite\\src\\main\\res\\xml\\device_filter.xml"
+    },
+    {
+        "merged": "D:\\SerialPortExample-master\\SerialPortExample-master\\AndroidUSBSerialMonitorLite4\\androidUSBSerialMonitorLite\\build\\intermediates\\res\\merged\\debug\\xml\\pref_header.xml",
+        "source": "D:\\SerialPortExample-master\\SerialPortExample-master\\AndroidUSBSerialMonitorLite4\\androidUSBSerialMonitorLite\\src\\main\\res\\xml\\pref_header.xml"
+    },
+    {
+        "merged": "D:\\SerialPortExample-master\\SerialPortExample-master\\AndroidUSBSerialMonitorLite4\\androidUSBSerialMonitorLite\\build\\intermediates\\res\\merged\\debug\\xml\\pref_disp_inner.xml",
+        "source": "D:\\SerialPortExample-master\\SerialPortExample-master\\AndroidUSBSerialMonitorLite4\\androidUSBSerialMonitorLite\\src\\main\\res\\xml\\pref_disp_inner.xml"
+    }
+]

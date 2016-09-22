@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<instant-run
+    abi="x86"
+    api-level="19"
+    density="xhdpi"
+    format="7"
+    timestamp="19151137206125"
+    token="2615215658354971707" >
+
+    <task
+        name="javac"
+        duration="3765" />
+    <task
+        name="instant-run-dex"
+        duration="0" />
+    <task
+        name="instant-run-transform"
+        duration="2012" />
+    <task
+        name="verifier"
+        duration="37" />
+
+    <artifact
+        location="D:\SerialPortExample-master\SerialPortExample-master\AndroidUSBSerialMonitorLite4\androidUSBSerialMonitorLite\build\outputs\apk\androidUSBSerialMonitorLite-debug.apk"
+        type="MAIN" />
+
+    <build timestamp="19151137206125" >
+        <artifact
+            location="D:\SerialPortExample-master\SerialPortExample-master\AndroidUSBSerialMonitorLite4\androidUSBSerialMonitorLite\build\outputs\apk\androidUSBSerialMonitorLite-debug.apk"
+            type="MAIN" />
+    </build>
+
+</instant-run>

@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="D:\SerialPortExample-master\SerialPortExample-master\AndroidUSBSerialMonitorLite4\fTDriver\src\main\jniLibs"/></dataSet><dataSet config="release"><source path="D:\SerialPortExample-master\SerialPortExample-master\AndroidUSBSerialMonitorLite4\fTDriver\src\release\jniLibs"/></dataSet></merger>

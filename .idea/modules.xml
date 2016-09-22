@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/AndroidUSBSerialMonitorLite4.iml" filepath="$PROJECT_DIR$/AndroidUSBSerialMonitorLite4.iml" />
+      <module fileurl="file://$PROJECT_DIR$/androidUSBSerialMonitorLite/androidUSBSerialMonitorLite.iml" filepath="$PROJECT_DIR$/androidUSBSerialMonitorLite/androidUSBSerialMonitorLite.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fTDriver/fTDriver.iml" filepath="$PROJECT_DIR$/fTDriver/fTDriver.iml" />
+    </modules>
+  </component>
+</project>
