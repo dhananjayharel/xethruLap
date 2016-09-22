@@ -119,6 +119,8 @@ public class AndroidUSBSerialMonitorLite extends Activity  implements OnChartVal
     private Button btWrite;
     private TextView etWrite;
     private String currentState="";
+    private int currentRpm=0;
+    private boolean lineChartStarted=false;
     // Default settings
     private int mTextFontSize       = 12;
     private Typeface mTextTypeface  = Typeface.MONOSPACE;
@@ -254,7 +256,7 @@ public class AndroidUSBSerialMonitorLite extends Activity  implements OnChartVal
                     openUsbSerial();
                     //feedMultiple();
 
-                	/*
+                   /*
                     String strWrite = "";
                     for (int i = 0; i < 3000; ++i) {
                         strWrite = strWrite + " " + Integer.toString(i);
@@ -274,7 +276,7 @@ public class AndroidUSBSerialMonitorLite extends Activity  implements OnChartVal
 
 
         // no description text
-        mChart.setDescription("Respiration");
+        mChart.setDescription("");
         mChart.setNoDataTextDescription("You need to provide data for the chart.");
 
         // enable touch gestures
@@ -305,13 +307,12 @@ public class AndroidUSBSerialMonitorLite extends Activity  implements OnChartVal
         // modify the legend ...
         // l.setPosition(LegendPosition.LEFT_OF_CHART);
         l.setForm(LegendForm.LINE);
-       // l.setTypeface(tf);
+        // l.setTypeface(tf);
         l.setTextColor(Color.WHITE);
 
         XAxis xl = mChart.getXAxis();
-       // xl.setTypeface(tf);
+        // xl.setTypeface(tf);
         xl.setTextColor(Color.WHITE);
-        xl.setTextSize(12f);
         xl.setDrawGridLines(false);
         xl.setAvoidFirstLastClipping(true);
         xl.setSpaceBetweenLabels(5);
@@ -320,7 +321,7 @@ public class AndroidUSBSerialMonitorLite extends Activity  implements OnChartVal
         YAxis leftAxis = mChart.getAxisLeft();
         //leftAxis.setTypeface(tf);
         leftAxis.setTextColor(Color.WHITE);
-        leftAxis.setAxisMaxValue(70f);
+        leftAxis.setAxisMaxValue(100f);
         leftAxis.setAxisMinValue(0f);
         leftAxis.setDrawGridLines(true);
 
@@ -332,7 +333,7 @@ public class AndroidUSBSerialMonitorLite extends Activity  implements OnChartVal
 
     private int year = 2015;
 
-    private void addEntry() {
+    private void addEntry(int value) {
         Log.e("dd","in add entry");
         LineData data = mChart.getData();
 
@@ -348,20 +349,20 @@ public class AndroidUSBSerialMonitorLite extends Activity  implements OnChartVal
             }
 
             // add a new x-value first
-           // data.addXValue(mMonths[data.getXValCount() % 12] + " "
-           //         + (year + data.getXValCount() / 12));
+            // data.addXValue(mMonths[data.getXValCount() % 12] + " "
+            //         + (year + data.getXValCount() / 12));
             data.addXValue(set.getEntryCount()+"");
-            float en = (float) (Math.random() * 20) + 30f;
-            data.addEntry(new Entry(en, set.getEntryCount()), 0);
+            data.addEntry(new Entry((float) value, set.getEntryCount()), 0);
+
             // let the chart know it's data has changed
             mChart.notifyDataSetChanged();
-           // Log.e("chart","notifyDataSetChanged"+set.getEntryCount());
+            Log.e("chart","notifyDataSetChanged"+set.getEntryCount());
             // limit the number of visible entries
-            mChart.setVisibleXRangeMaximum(50);
+            mChart.setVisibleXRangeMaximum(60);
             // mChart.setVisibleYRange(30, AxisDependency.LEFT);
 
             // move to the latest entry
-            mChart.moveViewToX(data.getXValCount() - 60);
+            mChart.moveViewToX(data.getXValCount() - 50);
 
             // this automatically refreshes the chart (calls invalidate())
             // mChart.moveViewTo(data.getXValCount()-7, 55f,
@@ -454,10 +455,11 @@ public class AndroidUSBSerialMonitorLite extends Activity  implements OnChartVal
                         //btWrite.setText(Long.toString(millisUntilFinished / 1000));
                         mTvtimeRemain.setText("Test will be finishing in "+Long.toString(millisUntilFinished / 1000)+" secs.");
                         mTvSerial.setText(currentState);
-                       // addEntry();
+                        //addEntry();
                     }
                     public void onFinish() {
                         btWrite.setText("Start");
+                        currentRpm=-999;
                         closeUsbSerial();
                         mTvtimeRemain.setText("Finished.");
                         mTvtotalReadings.setText("126");
@@ -471,7 +473,7 @@ public class AndroidUSBSerialMonitorLite extends Activity  implements OnChartVal
                             }
                         });
                         alertDialogBuilder.setMessage("Test is finished.");
-                        popup	=   alertDialogBuilder.show();
+                        popup  =   alertDialogBuilder.show();
                         mTvMinBreath.setText(""+ob.getMin());
                         mTvMaxBreath.setText(""+ob.getMax());
                         mTvAvgBreath.setText(""+ob.getAvg());
@@ -488,7 +490,7 @@ public class AndroidUSBSerialMonitorLite extends Activity  implements OnChartVal
                     }
 
                 }.start();
-                feedMultiple();
+                //feedMultiple();
                 openUsbSerial();
                 btWrite.setText("Stop");
             }
@@ -731,7 +733,7 @@ public class AndroidUSBSerialMonitorLite extends Activity  implements OnChartVal
                     currentCount++;
 
                 }
-                //	else{
+                // else{
 
                 // ////////////////////////////////////////////////////////
                 // Read and Display to Terminal
@@ -854,26 +856,41 @@ public class AndroidUSBSerialMonitorLite extends Activity  implements OnChartVal
                     case DISP_HEX:
                         String byteData=IntToHex2((int) rbuf[10]);
 
-                        if(byteData.equals("00")){
+                        if(byteData.equals("00")) {
                             //mText.append((int)rbuf[14]+" rpm");
-                            runOnUiThread(new Runnable() {
+                            if (!lineChartStarted){
+                                lineChartStarted=true;
+                                runOnUiThread(new Runnable() {
 
-                                @Override
-                                public void run() {
-                                    addEntry();
-                                }
-                            });
-                           // addEntry();
-                            if(rbuf[14]>0)
+                                    @Override
+                                    public void run() {
+                                        feedMultiple();
+                                    }
+                                });
+                            }
+                            // addEntry();
+                            if(rbuf[14]>0){
                                 breathCount.add((int)rbuf[14]);
+                                final int currRpm=(int)rbuf[14];
+                                runOnUiThread(new Runnable() {
+
+                                    @Override
+                                    public void run() {
+                                        // addEntry(currRpm);
+                                        currentRpm=currRpm;
+                                    }
+                                });
+                            }
                         }
 
                         //mText.append(getStatus(byteData));
                         final String str=(String) getStatus(byteData);
+
                         mHandler.post(new Runnable() {
                             public void run() {
                                 // mTvSerial.setText(str);
                                 currentState=str;
+
                             }
                         });
                         mText.append(" ");
@@ -885,6 +902,13 @@ public class AndroidUSBSerialMonitorLite extends Activity  implements OnChartVal
         }
     }
 
+    private synchronized void stopThread(Runnable runnable)
+    {
+        if (runnable != null)
+        {
+            runnable = null;
+        }
+    }
     private void feedMultiple() {
 
         new Thread(new Runnable() {
@@ -892,12 +916,13 @@ public class AndroidUSBSerialMonitorLite extends Activity  implements OnChartVal
             @Override
             public void run() {
                 for(int i = 0; i < 500; i++) {
-
                     runOnUiThread(new Runnable() {
-
                         @Override
                         public void run() {
-                            addEntry();
+                            if(currentRpm==-999)
+                                stopThread(this);
+                            else
+                                addEntry(currentRpm);
                         }
                     });
 
@@ -1112,6 +1137,6 @@ public class AndroidUSBSerialMonitorLite extends Activity  implements OnChartVal
 
     @Override
     public void onNothingSelected() {
-    Log.e("dd","not slected");
+        Log.e("dd","not slected");
     }
 }
