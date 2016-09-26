@@ -375,9 +375,9 @@ public class AndroidUSBSerialMonitorLite extends Activity  implements OnChartVal
         LineDataSet set = new LineDataSet(null, "Dynamic Data");
         set.setAxisDependency(AxisDependency.LEFT);
         set.setColor(ColorTemplate.getHoloBlue());
-        set.setCircleColor(Color.GREEN);
+        set.setCircleColor(Color.BLACK);
         set.setLineWidth(2f);
-        set.setCircleRadius(4f);
+        set.setCircleRadius(1f);
         set.setFillAlpha(65);
         set.setFillColor(ColorTemplate.getHoloBlue());
         set.setHighLightColor(Color.rgb(244, 117, 117));
@@ -1095,7 +1095,7 @@ public class AndroidUSBSerialMonitorLite extends Activity  implements OnChartVal
                     if (SHOW_DEBUG) {
                         Log.d(TAG, "Device attached mainloop");
                     }
-                    mainloop();
+                   // mainloop();
                 }
             } else if (UsbManager.ACTION_USB_DEVICE_DETACHED.equals(action)) {
                 if (SHOW_DEBUG) {
