@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="primary">#63D0BE</color>
+    <color name="tran_white">#66FFFFFF</color>
+    <color name="tran_gray">#66999999</color>
+    <color name="white">#FFF</color>
+    <color name="genre">#666666</color>
+    <color name="light">#FAFAFA</color>
+    <color name="black_light">#E6E6E6</color>
+    <color name="black_25">#40000000</color>
+    <color name="black_10">#1A000000</color>
+    <color name="year">#888888</color>
+    <color name="list_divider">#000000</color>
+    <color name="list_row_start_color">#e2ffff</color>
+    <color name="list_row_end_color">#e2ffff</color>
+    <color name="list_row_hover_start_color">#ebeef0</color>
+    <color name="list_row_hover_end_color">#ebeef0</color>
+    <color name="list_selected_item_color">@color/list_row_end_color</color>
+    <color name="action_bar_old">#247fab</color>
+    <color name="action_bar">#1b6d9f</color>
+    <color name="blur">#AA181818</color>
+    <color name="backgroundSetting">#F9F8F6</color>
+    <color name="yellow">#ffff00</color>
+    <color name="red">#FF0000</color>
+    <color name="red_dark">#D70000</color>
+    <color name="txt_grey">#A4A4A4</color>
+    <color name="light_green">#00FF00</color>
+    <color name="blue_light">#0404B4</color>
+    <color name="green_dark">#43A047</color>
+    <color name="blue_light_2">#03A9F4</color>
+    <color name="white_grey">#F2F2F2</color>
+    <color name="gray">#C0C0C0</color>
+    <color name="milk_white">#FEFCFF</color>
+    <color name="hint_textcolor">#AAAAAA</color>
+    <color name="barDark">#C0C000</color>
+    <color name="black">#000000</color>
+    <color name="barkgray">#8c8c8c</color>
+    <color name="page_colour">#F5F5DC</color>
+    <color name="grid_colour">#A4DDED</color>
+    <color name="hb_pencil">#555</color>
+    <color name="h4_pencil">#AAA</color>
+    <color name="blue_pen">#005db4</color>
+    <color name="red_pen">#ff0000</color>
+    <color name="yellow_hl">#ffff00</color>
+    <color name="black_pen">#111111</color>
+    <color name="transparent">#00000000</color>
+    <color name="translucent_black">#80000000</color>
+    <color name="selected_button_background">#FF2222</color>
+    <color name="unselected_button_background">#B6B6B4</color>
+    <color name="grayBlueishText">#768195</color>
+    <color name="light_gray">#AFFFFFFF</color>
+    <color name="gray_300">#E0E0E0</color>
+    <color name="gray_300_60">#60E0E0E0</color>
+    <color name="dialog_background">#e9eeed</color>
+    <color name="white_88">#dfff</color>
+    <color name="background_dialog">#e9eeed</color>
+    <color name="orang">#FF9900</color>
+    <color name="tab_highlight">#ff9ecfbf</color>
+    <color name="dim_grey">#696969</color>
+    <color name="green">#008000</color>
+    <color name="green_white">#2ac44b</color>
+    <!-- Whiteboard Color -->
+    <color name="wb_green">#00A551</color>
+    <color name="wb_bluesky">#00ADEE</color>
+    <color name="wb_blue">#2E3191</color>
+    <color name="wb_purple">#652D90</color>
+    <color name="wb_pink">#EB008B</color>
+    <color name="wb_black">#231F20</color>
+    <color name="wb_red">#EC1C24</color>
+    <color name="wb_orange">#F05A28</color>
+    <color name="wb_yellow">#FFF100</color>
+    <color name="transparent_10_percent">#1AFFFFFF</color>
+    <color name="transparent_black">#33000000</color>
+    <color name="transparent_black_50_percent">#80000000</color>
+    <color name="transparent_black_5_percent">#0D000000</color>
+    <color name="user_term">#fffb00</color>
+
+    <!-- Color BG Profile random -->
+    <color name="vp_light_green">#6BBD48</color>
+    <color name="vp_light_blue">#3195D2</color>
+    <color name="vp_light_cyan">#34A6B0</color>
+    <color name="vp_light_purple">#6B52A1</color>
+    <color name="vp_dark_cyan">#00909C</color>
+    <color name="vp_dark_purple">#592D80</color>
+    
+    <color name="social_chat_selected">#55b69c</color>
+
+</resources>
