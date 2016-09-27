@@ -15,7 +15,23 @@
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pneumonia Detection"
+                android:layout_weight="1"
+                android:textSize="30sp"
+                android:padding="5dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/heartmonitor"
 
+                />
+
+        </LinearLayout>
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
@@ -23,7 +39,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Respiration Monitoring"
+                android:text="Pneumonia Detection"
                 android:layout_weight="1"
                 android:textSize="30sp"
                 android:padding="5dp"
@@ -31,6 +47,7 @@
                  />
 
         </LinearLayout>
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -40,21 +57,27 @@
             android:layout_height="wrap_content"
             android:text="New Test"
             android:layout_weight="1"
+            android:padding="10dp"
             android:layout_gravity="center_horizontal"
-            android:id="@+id/buttonTest" />
+            android:id="@+id/buttonStart"
+
+            android:textSize="20dp" />
 
      </LinearLayout>
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
+            android:padding="10dp"
             android:layout_height="wrap_content">
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="View History"
                 android:layout_weight="1"
+
+                android:textSize="20dp"
                 android:layout_gravity="center_horizontal"
-                android:id="@+id/buttonStart" />
+                android:id="@+id/buttonHistory" />
 
         </LinearLayout>
 
