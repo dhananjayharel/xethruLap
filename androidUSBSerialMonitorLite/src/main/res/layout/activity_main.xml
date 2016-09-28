@@ -21,9 +21,9 @@
             android:layout_height="wrap_content">
             <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="131dp"
                 android:text="Pneumonia Detection"
-                android:layout_weight="1"
+                android:layout_weight="0.96"
                 android:textSize="30sp"
                 android:padding="5dp"
                 android:layout_gravity="center_horizontal"
@@ -44,13 +44,14 @@
                 android:textSize="30sp"
                 android:padding="5dp"
                 android:layout_gravity="center_horizontal"
-                 />
+                android:gravity="center" />
 
         </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
+        android:padding="10dp"
         android:layout_height="wrap_content">
         <Button
             android:layout_width="wrap_content"
@@ -61,9 +62,21 @@
             android:layout_gravity="center_horizontal"
             android:id="@+id/buttonStart"
 
-            android:textSize="20dp" />
+            android:textSize="25dp" />
 
      </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:orientation="vertical" >
+            <View
+                android:background="@android:color/black"
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+
+                />
+        </LinearLayout>
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
@@ -74,11 +87,10 @@
                 android:layout_height="wrap_content"
                 android:text="View History"
                 android:layout_weight="1"
-
-                android:textSize="20dp"
+                android:padding="10dp"
+                android:textSize="25dp"
                 android:layout_gravity="center_horizontal"
                 android:id="@+id/buttonHistory" />
-
         </LinearLayout>
 
     </LinearLayout>

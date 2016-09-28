@@ -54,14 +54,7 @@ public class MainActivity extends Activity {
     public boolean onCreateOptionsMenu(Menu menu) {
         menu.add(Menu.NONE, MENU_ID_OPENDEVICE, Menu.NONE, "Start the Test");
         menu.add(Menu.NONE, MENU_ID_CLOSEDEVICE, Menu.NONE, "Back");
-/*        if(mSerial!=null) {
-            if(mSerial.isConnected()) {
-                menu.getItem(MENU_ID_OPENDEVICE).setEnabled(false);
-            } else {
-                menu.getItem(MENU_ID_CLOSEDEVICE).setEnabled(false);
-            }
-        }
-*/        return super.onCreateOptionsMenu(menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
     public void showDialog(){
@@ -90,7 +83,7 @@ public class MainActivity extends Activity {
                 dialog.dismiss();
                 Intent testPage = new Intent(v.getContext(),AndroidUSBSerialMonitorLite.class);
                 testPage.putExtra("Name",babyName);
-                testPage.putExtra("Age",babyAge);
+                testPage.putExtra("Age",age);
                 startActivity(testPage);
 
             }

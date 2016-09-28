@@ -9,7 +9,9 @@
  */
 package com.my.app;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
@@ -68,6 +70,9 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 
 
 public class AndroidUSBSerialMonitorLite extends Activity  implements OnChartValueSelectedListener{
+
+    private SharedPreferences mPrefs;
+    private SharedPreferences.Editor prefsEditor;
     // debug settings
     private static final boolean SHOW_DEBUG                 = false;
     private static final boolean USE_WRITE_BUTTON_FOR_DEBUG = false;
@@ -121,6 +126,8 @@ public class AndroidUSBSerialMonitorLite extends Activity  implements OnChartVal
     private String currentState="";
     private int currentRpm=0;
     private boolean lineChartStarted=false;
+    private String babyName="";
+    private int babyAge=0;
     // Default settings
     private int mTextFontSize       = 12;
     private Typeface mTextTypeface  = Typeface.MONOSPACE;
@@ -157,6 +164,19 @@ public class AndroidUSBSerialMonitorLite extends Activity  implements OnChartVal
             }
         }
 */
+        mPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        prefsEditor = mPrefs.edit();
+
+
+        Intent intent = getIntent();
+        if(intent.getExtras() != null) {
+            String age = intent.getStringExtra("Age");
+            String name = intent.getStringExtra("Name");
+            babyAge=Integer.parseInt(age);
+            babyName=name;
+            Toast.makeText(this,"go this"+babyAge+","+babyName,Toast.LENGTH_LONG).show();
+        }
+
         alertDialogBuilder = new AlertDialog.Builder(this);
         setContentView(R.layout.main);
 
@@ -232,7 +252,55 @@ public class AndroidUSBSerialMonitorLite extends Activity  implements OnChartVal
                 @Override
                 public void onClick(View v) {
                     // writeDataToSerial();
-                    showDialog();
+                   // showDialog();
+                    breathCount.clear();
+                    new CountDownTimer(120000,1000) {
+                        int i=0;
+                        public void onTick(long millisUntilFinished) {
+                            //btWrite.setText(Long.toString(millisUntilFinished / 1000));
+                            mTvtimeRemain.setText("Test will be finishing in "+Long.toString(millisUntilFinished / 1000)+" secs.");
+                            mTvSerial.setText(currentState);
+                            //addEntry();
+                        }
+                        public void onFinish() {
+                            btWrite.setText("Start");
+                            currentRpm=-999;
+                            closeUsbSerial();
+                            mTvtimeRemain.setText("Finished.");
+                            mTvtotalReadings.setText("154");
+                            BreathCounts ob=getMinandMax(breathCount);
+                            mTvSerial.setText("");
+                            mText.setLength(0);
+                            alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    //do things
+                                    popup.dismiss();
+                                }
+                            });
+                            alertDialogBuilder.setMessage("Test is finished.");
+                            popup  =   alertDialogBuilder.show();
+                            mTvMinBreath.setText(""+ob.getMin());
+                            mTvMaxBreath.setText(""+ob.getMax());
+                            mTvAvgBreath.setText(""+ob.getAvg());
+                            // Toast.makeText(AndroidUSBSerialMonitorLite.this, "ageInMonths="+ageInMonths+"Maxage="+ob.getMax(), Toast.LENGTH_LONG).show();
+                            if(hasPnemonia(ob.getMax(), ageInMonths)){
+                                conclusion.setText("Pneumonia detected!");
+                                conclusion.setTextColor(Color.RED);
+                            }
+                            else{
+                                conclusion.setText("Pneumonia not detected!");
+                                conclusion.setTextColor(Color.GREEN);
+                            }
+                            String age = ""+babyAge;
+                            ResultModel rs = new ResultModel(babyName,age,getCurrentTimeStamp(),ob.getMin(),ob.getMax(),ob.getAvg());
+                            prefsEditor.putString("newEntry",ResultModel.getJsonStringOfObject(rs));
+                            prefsEditor.commit();
+                        }
+
+                    }.start();
+                    feedMultipleMock();
+                    openUsbSerial();
+                    btWrite.setText("Stop");
 
                 }
             });
@@ -292,6 +360,7 @@ public class AndroidUSBSerialMonitorLite extends Activity  implements OnChartVal
 
         // set an alternative background color
         mChart.setBackgroundColor(Color.LTGRAY);
+
         mChart.setOnChartValueSelectedListener(this);
         LineData data = new LineData();
         data.setValueTextColor(Color.WHITE);
@@ -332,9 +401,14 @@ public class AndroidUSBSerialMonitorLite extends Activity  implements OnChartVal
     }
 
     private int year = 2015;
+    public String getCurrentTimeStamp() {
+        return new SimpleDateFormat("dd-MM-yyyy HH:mm aa").format(new Date());
+    }
 
     private void addEntry(int value) {
         Log.e("dd","in add entry");
+
+
         LineData data = mChart.getData();
 
         if (data != null) {
@@ -374,12 +448,12 @@ public class AndroidUSBSerialMonitorLite extends Activity  implements OnChartVal
 
         LineDataSet set = new LineDataSet(null, "Dynamic Data");
         set.setAxisDependency(AxisDependency.LEFT);
-        set.setColor(ColorTemplate.getHoloBlue());
+        set.setColor(Color.RED);
         set.setCircleColor(Color.BLACK);
-        set.setLineWidth(2f);
+        set.setLineWidth(4f);
         set.setCircleRadius(1f);
-        set.setFillAlpha(65);
-        set.setFillColor(ColorTemplate.getHoloBlue());
+        set.setFillAlpha(100);
+        set.setFillColor(Color.RED);
         set.setHighLightColor(Color.rgb(244, 117, 117));
         set.setValueTextColor(Color.WHITE);
         set.setValueTextSize(9f);
@@ -397,6 +471,7 @@ public class AndroidUSBSerialMonitorLite extends Activity  implements OnChartVal
         max=min;
         while(iter.hasNext()){
             int val=(int)Integer.parseInt(iter.next().toString());
+            sum+=val;
             if(min>val)
                 min=val;
             if(max<val)
@@ -923,6 +998,33 @@ public class AndroidUSBSerialMonitorLite extends Activity  implements OnChartVal
                                 stopThread(this);
                             else
                                 addEntry(currentRpm);
+                        }
+                    });
+
+                    try {
+                        Thread.sleep(500);
+                    } catch (InterruptedException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }).start();
+    }
+
+
+    private void feedMultipleMock() {
+
+        new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                for(int i = 0; i < 500; i++) {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            int Random =20 +  (int)(Math.random()*(50));
+                                addEntry(Random);
                         }
                     });
 
