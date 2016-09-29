@@ -12,19 +12,19 @@ public class ResultModel {
 
     public String name;
     public String age;
-    public String dateTime;
+    public long dateTime;
     public int maxBreathCount=0;
     public int minBreathCount=0;
     public double avgBreathCount=0;
 
-    public ResultModel(String name,String age,String dateTime){
+    public ResultModel(String name,String age,Long dateTime){
         this.name=name;
         this.age=age;
         this.dateTime=dateTime;
 
     }
 
-    public ResultModel(String name,String age,String dateTime,int meanBreath,int maxBreath,double avgBreath){
+    public ResultModel(String name,String age,long dateTime,int meanBreath,int maxBreath,double avgBreath){
         this.name=name;
         this.age=age;
         this.dateTime=dateTime;
@@ -41,7 +41,7 @@ public class ResultModel {
         return name;
     }
 
-    public String getDateTime() {
+    public long getDateTime() {
         return dateTime;
     }
 
@@ -82,7 +82,7 @@ public class ResultModel {
         int minBreathCount =  Integer.parseInt(jsonObject.get("minBreathCount").toString());
         int maxBreathCount =  Integer.parseInt(jsonObject.get("maxBreathCount").toString());
         int avgBreathCount =  Integer.parseInt(jsonObject.get("avgBreathCount").toString());
-        String dateTime =   jsonObject.get("dateTime").toString();
+        long dateTime =   Long.parseLong(jsonObject.get("dateTime").toString());
      return new ResultModel(name,age,dateTime,minBreathCount,maxBreathCount,avgBreathCount);
 
         } catch (JSONException e) {

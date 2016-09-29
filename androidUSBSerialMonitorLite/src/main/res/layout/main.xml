@@ -46,7 +46,7 @@
                     android:singleLine="true"
                     android:layout_gravity="left"
                      android:text="Test will be finishing in"
-                     android:textSize="30dp"
+                     android:textSize="20dp"
                       android:textStyle="bold"
                 />
                 -->
@@ -57,286 +57,12 @@
 
                 android:singleLine="true"
                 android:text="Test will run for 3 minutes"
-                android:textSize="30dp"
+                android:textSize="20dp"
                 android:textStyle="bold"
                 android:gravity="center"
                 />
         </LinearLayout>
-
-
         <LinearLayout
-            android:id="@+id/svText"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
-
-            <LinearLayout
-                android:id="@+id/LinearLayout"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:orientation="horizontal" >
-                <TextView
-                    android:id="@+id/currentState"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:typeface="normal"
-                    android:layout_weight="1"
-                    android:layout_gravity="left"
-                    android:textStyle="bold"
-                    android:textColor="@android:color/black"
-                    android:textSize="30dp"
-                    android:text="Device status" />
-                <TextView
-                    android:id="@+id/tvSerial"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:typeface="normal"
-                    android:layout_weight="1"
-                    android:textSize="30dp"
-                    android:layout_gravity="right"
-                    android:textColor="@android:color/black"
-                    android:text="Connected" />
-
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/LinearLayout"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:orientation="vertical" >
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:typeface="normal"
-                    android:layout_weight="1"
-                    android:textSize="30dp"
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    android:textColor="@android:color/black"
-                    android:text="Result"
-                    />
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/LinearLayout"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:orientation="vertical" >
-                <View
-                    android:background="@android:color/black"
-                    android:layout_width="fill_parent"
-                    android:layout_height="1dp"
-
-                    />
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/LinearLayout"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:orientation="horizontal" >
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:typeface="normal"
-                    android:layout_weight="1"
-                    android:textSize="30dp"
-                    android:layout_gravity="left"
-                    android:textStyle="bold"
-                    android:textColor="@android:color/black"
-                    android:text="Name:" />
-                <TextView
-                    android:id="@+id/name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:typeface="normal"
-                    android:layout_weight="1"
-                    android:textSize="30dp"
-                    android:textColor="@android:color/black"
-                    android:layout_gravity="right"
-                    android:text="" />
-
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/LinearLayout"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:orientation="horizontal" >
-                <TextView
-
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:typeface="normal"
-                    android:layout_weight="1"
-                    android:textSize="30dp"
-                    android:layout_gravity="left"
-                    android:textStyle="bold"
-                    android:textColor="@android:color/black"
-                    android:text="Age in months:" />
-                <TextView
-                    android:id="@+id/age"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:typeface="normal"
-                    android:layout_weight="1"
-                    android:textSize="30dp"
-                    android:textColor="@android:color/black"
-                    android:layout_gravity="right"
-                    android:text="" />
-
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/LinearLayout"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:orientation="horizontal" >
-                <TextView
-
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:typeface="normal"
-                    android:layout_weight="1"
-                    android:textSize="30dp"
-                    android:layout_gravity="left"
-                    android:textStyle="bold"
-                    android:textColor="@android:color/black"
-                    android:text="Total readings:" />
-                <TextView
-                    android:id="@+id/totalReadings"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:typeface="normal"
-                    android:layout_weight="1"
-                    android:textSize="30dp"
-                    android:textColor="@android:color/black"
-                    android:layout_gravity="right"
-                    android:text="-" />
-
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/LinearLayout"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:orientation="horizontal" >
-                <TextView
-
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:typeface="normal"
-                    android:layout_weight="1"
-                    android:textSize="30dp"
-                    android:layout_gravity="left"
-                    android:textStyle="bold"
-                    android:textColor="@android:color/black"
-                    android:text="Min Breath/min:" />
-                <TextView
-                    android:id="@+id/minBreath"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:typeface="normal"
-                    android:layout_weight="1"
-                    android:textSize="30dp"
-                    android:textColor="@android:color/black"
-                    android:layout_gravity="right"
-                    android:text="-" />
-
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/LinearLayout"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:orientation="horizontal" >
-                <TextView
-
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:typeface="normal"
-                    android:layout_weight="1"
-                    android:layout_gravity="left"
-                    android:textStyle="bold"
-                    android:textColor="@android:color/black"
-                    android:textSize="30dp"
-                    android:text="Max Breath/min:" />
-                <TextView
-                    android:id="@+id/maxBreath"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:typeface="normal"
-                    android:layout_weight="1"
-                    android:textSize="30dp"
-                    android:layout_gravity="right"
-                    android:textColor="@android:color/black"
-                    android:text="-" />
-
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/LinearLayout"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:orientation="horizontal" >
-                <TextView
-
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:typeface="normal"
-                    android:layout_weight="1"
-                    android:layout_gravity="left"
-                    android:textStyle="bold"
-                    android:textSize="30dp"
-                    android:textColor="@android:color/black"
-                    android:text="Avg Breath/min:" />
-                <TextView
-                    android:id="@+id/avgBreath"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:typeface="normal"
-                    android:layout_weight="1"
-                    android:textSize="30dp"
-                    android:textColor="@android:color/black"
-                    android:layout_gravity="right"
-                    android:text="-" />
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/LinearLayout"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:orientation="horizontal" >
-                <TextView
-
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:typeface="normal"
-                    android:layout_weight="1"
-                    android:layout_gravity="left"
-                    android:textStyle="bold"
-                    android:textSize="30dp"
-                    android:textColor="@android:color/black"
-                    android:text="Conclusion:" />
-                <TextView
-                    android:id="@+id/conclusion"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:typeface="normal"
-                    android:layout_weight="1"
-                    android:textSize="30dp"
-                    android:textColor="@android:color/black"
-                    android:layout_gravity="right"
-                    android:text="" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/linearLayout1"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:gravity="bottom|left|right"
@@ -352,14 +78,324 @@
                 android:text="@string/button_write" />
 
         </LinearLayout>
-       <RelativeLayout
-           android:layout_width="wrap_content"
-           android:layout_height="300dp">
-           <com.github.mikephil.charting.charts.LineChart
-               android:id="@+id/chart1"
-               android:layout_width="match_parent"
-               android:layout_height="match_parent"/>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:orientation="horizontal" >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:typeface="normal"
+                android:layout_weight="1"
+                android:layout_gravity="center"
 
-       </RelativeLayout>
+                android:textColor="@android:color/black"
+                android:textSize="15dp"
+                android:text="Graph: Breathing pattern"
+                android:gravity="center" />
+
+
+        </LinearLayout>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="300dp">
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/chart1"
+                android:layout_width="match_parent"
+                android:alpha="0.5"
+                android:layout_height="match_parent"/>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/svText"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:orientation="horizontal" >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:typeface="normal"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/black"
+                    android:textSize="20dp"
+                    android:text="Current rate/min:" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:typeface="normal"
+                    android:id="@+id/CurrentRespRate"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:textColor="@android:color/black"
+                    android:textSize="20dp"
+                    android:text="NA" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:orientation="horizontal" >
+                <TextView
+                    android:id="@+id/currentState"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:typeface="normal"
+                    android:layout_weight="1"
+                    android:layout_gravity="left"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/black"
+                    android:textSize="20dp"
+                    android:text="Device status" />
+                <TextView
+                    android:id="@+id/tvSerial"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:typeface="normal"
+                    android:layout_weight="1"
+                    android:textSize="20dp"
+                    android:layout_gravity="right"
+                    android:textColor="@android:color/black"
+                    android:text="Connected" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:orientation="vertical" >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:typeface="normal"
+                    android:layout_weight="1"
+                    android:textSize="20dp"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/black"
+                    android:text="Result"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:orientation="vertical" >
+                <View
+                    android:background="@android:color/black"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:orientation="horizontal" >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:typeface="normal"
+                    android:layout_weight="1"
+                    android:textSize="20dp"
+                    android:layout_gravity="left"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/black"
+                    android:text="Name:" />
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:typeface="normal"
+                    android:layout_weight="1"
+                    android:textSize="20dp"
+                    android:textColor="@android:color/black"
+                    android:layout_gravity="right"
+                    android:text="" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:orientation="horizontal" >
+                <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:typeface="normal"
+                    android:layout_weight="1"
+                    android:textSize="20dp"
+                    android:layout_gravity="left"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/black"
+                    android:text="Age in months:" />
+                <TextView
+                    android:id="@+id/age"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:typeface="normal"
+                    android:layout_weight="1"
+                    android:textSize="20dp"
+                    android:textColor="@android:color/black"
+                    android:layout_gravity="right"
+                    android:text="" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:orientation="horizontal" >
+                <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:typeface="normal"
+                    android:layout_weight="1"
+                    android:textSize="20dp"
+                    android:layout_gravity="left"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/black"
+                    android:text="Total readings:" />
+                <TextView
+                    android:id="@+id/totalReadings"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:typeface="normal"
+                    android:layout_weight="1"
+                    android:textSize="20dp"
+                    android:textColor="@android:color/black"
+                    android:layout_gravity="right"
+                    android:text="-" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:orientation="horizontal" >
+                <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:typeface="normal"
+                    android:layout_weight="1"
+                    android:textSize="20dp"
+                    android:layout_gravity="left"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/black"
+                    android:text="Min Breath/min:" />
+                <TextView
+                    android:id="@+id/minBreath"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:typeface="normal"
+                    android:layout_weight="1"
+                    android:textSize="20dp"
+                    android:textColor="@android:color/black"
+                    android:layout_gravity="right"
+                    android:text="-" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:orientation="horizontal" >
+                <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:typeface="normal"
+                    android:layout_weight="1"
+                    android:layout_gravity="left"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/black"
+                    android:textSize="20dp"
+                    android:text="Max Breath/min:" />
+                <TextView
+                    android:id="@+id/maxBreath"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:typeface="normal"
+                    android:layout_weight="1"
+                    android:textSize="20dp"
+                    android:layout_gravity="right"
+                    android:textColor="@android:color/black"
+                    android:text="-" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:orientation="horizontal" >
+                <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:typeface="normal"
+                    android:layout_weight="1"
+                    android:layout_gravity="left"
+                    android:textStyle="bold"
+                    android:textSize="20dp"
+                    android:textColor="@android:color/black"
+                    android:text="Avg Breath/min:" />
+                <TextView
+                    android:id="@+id/avgBreath"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:typeface="normal"
+                    android:layout_weight="1"
+                    android:textSize="20dp"
+                    android:textColor="@android:color/black"
+                    android:layout_gravity="right"
+                    android:text="-" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/LinearLayout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:orientation="horizontal" >
+                <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:typeface="normal"
+                    android:layout_weight="1"
+                    android:layout_gravity="left"
+                    android:textStyle="bold"
+                    android:textSize="20dp"
+                    android:textColor="@android:color/black"
+                    android:text="Conclusion:" />
+                <TextView
+                    android:id="@+id/conclusion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:typeface="normal"
+                    android:layout_weight="1"
+                    android:textSize="20dp"
+                    android:textColor="@android:color/black"
+                    android:layout_gravity="right"
+                    android:text="" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+        
     </LinearLayout>
 </ScrollView>
