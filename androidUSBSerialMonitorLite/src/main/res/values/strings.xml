@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Xethru</string>
-    <string name="button_write">Start</string>
+    <string name="button_write">START</string>
     <string name="terminal_setting_header_title">Serial Settings</string>
     <string name="terminal_setting_header_summary"/>
     <string name="display_setting_header_title">Display Settings</string>

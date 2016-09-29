@@ -29,6 +29,9 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.hardware.usb.UsbManager;
+import android.media.MediaPlayer;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -73,6 +76,7 @@ public class AndroidUSBSerialMonitorLite extends Activity  implements OnChartVal
 
     private SharedPreferences mPrefs;
     private SharedPreferences.Editor prefsEditor;
+    private Set<String> set;
     // debug settings
     private static final boolean SHOW_DEBUG                 = false;
     private static final boolean USE_WRITE_BUTTON_FOR_DEBUG = false;
@@ -90,7 +94,8 @@ public class AndroidUSBSerialMonitorLite extends Activity  implements OnChartVal
     private static final int MENU_ID_WORDLIST       = 5;
     public int ageInMonths=6;
     public String name="Blob";
-
+    private CountDownTimer ct;
+    private  Thread mLoopThred;
     private static final int REQUEST_PREFERENCE         = 0;
     private static final int REQUEST_WORD_LIST_ACTIVITY = 1;
 
@@ -112,7 +117,7 @@ public class AndroidUSBSerialMonitorLite extends Activity  implements OnChartVal
     private LineChart mChart;
 
     //private ScrollView mSvText;
-    private TextView mTvSerial,mTvMinBreath,mTvMaxBreath,mTvAvgBreath,conclusion,mTvName,mTvAge,mTvtimeRemain,mTvtotalReadings;
+    private TextView mTvSerial,mTvMinBreath,mTvMaxBreath,mTvAvgBreath,conclusion,mTvName,mTvAge,mTvtimeRemain,mTvtotalReadings,mTvCurrentRate;
     private StringBuilder mText = new StringBuilder();
     private boolean mStop = false;
 
@@ -141,8 +146,9 @@ public class AndroidUSBSerialMonitorLite extends Activity  implements OnChartVal
     private int mFlowControl        = FTDriver.FTDI_SET_FLOW_CTRL_NONE;
     private int mBreak              = FTDriver.FTDI_SET_NOBREAK;
     private String mEmailAddress    = "@gmail.com";
-
+    private static boolean testsRunning;
     private boolean mRunningMainLoop = false;
+    private boolean usbConnected=false;
     private Set<Integer> breathCount= new HashSet<Integer>();
     private static final String ACTION_USB_PERMISSION =
             "jp.ksksue.app.terminal.USB_PERMISSION";
@@ -155,6 +161,8 @@ public class AndroidUSBSerialMonitorLite extends Activity  implements OnChartVal
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mStop=true;
+
 
 /* FIXME : How to check that there is a title bar menu or not.
         // Should not set a Window.FEATURE_NO_TITLE on Honeycomb because a user cannot see menu button.
@@ -172,9 +180,11 @@ public class AndroidUSBSerialMonitorLite extends Activity  implements OnChartVal
         if(intent.getExtras() != null) {
             String age = intent.getStringExtra("Age");
             String name = intent.getStringExtra("Name");
+            mStop=true;
+
             babyAge=Integer.parseInt(age);
             babyName=name;
-            Toast.makeText(this,"go this"+babyAge+","+babyName,Toast.LENGTH_LONG).show();
+           // Toast.makeText(this,"go this s"+babyAge+","+babyName,Toast.LENGTH_LONG).show();
         }
 
         alertDialogBuilder = new AlertDialog.Builder(this);
@@ -190,6 +200,7 @@ public class AndroidUSBSerialMonitorLite extends Activity  implements OnChartVal
         mTvtotalReadings=(TextView) findViewById(R.id.totalReadings);
         mTvName = (TextView) findViewById(R.id.name);
         mTvAge = (TextView) findViewById(R.id.age);
+        mTvCurrentRate=(TextView) findViewById(R.id.CurrentRespRate);
 
         btWrite = (Button) findViewById(R.id.btWrite);
         //dj
@@ -234,8 +245,8 @@ public class AndroidUSBSerialMonitorLite extends Activity  implements OnChartVal
                 Toast.makeText(this, "FTD began", Toast.LENGTH_LONG);
             }
             loadDefaultSettingValues();
-            mTvSerial.setTextSize(mTextFontSize);
-            mainloop();
+            //mTvSerial.setTextSize(mTextFontSize);
+           //dj:ch  mainloop();
         } else {
             if (SHOW_DEBUG) {
                 Log.d(TAG, "FTDriver no connection");
@@ -253,54 +264,36 @@ public class AndroidUSBSerialMonitorLite extends Activity  implements OnChartVal
                 public void onClick(View v) {
                     // writeDataToSerial();
                    // showDialog();
+                    String buttonText=btWrite.getText().toString();
+                    if(buttonText.equals("STOP")){
+                        doOnFinished();
+                        return;
+                    }
+
+                    currentRpm=0;
                     breathCount.clear();
-                    new CountDownTimer(120000,1000) {
+                    ct= new CountDownTimer(60000,1000) {
                         int i=0;
+
                         public void onTick(long millisUntilFinished) {
                             //btWrite.setText(Long.toString(millisUntilFinished / 1000));
                             mTvtimeRemain.setText("Test will be finishing in "+Long.toString(millisUntilFinished / 1000)+" secs.");
                             mTvSerial.setText(currentState);
+                           try {
+                               mTvCurrentRate.setText(currentRpm+"");
+                           }catch(Exception e){e.printStackTrace();}
                             //addEntry();
                         }
                         public void onFinish() {
-                            btWrite.setText("Start");
-                            currentRpm=-999;
-                            closeUsbSerial();
-                            mTvtimeRemain.setText("Finished.");
-                            mTvtotalReadings.setText("154");
-                            BreathCounts ob=getMinandMax(breathCount);
-                            mTvSerial.setText("");
-                            mText.setLength(0);
-                            alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    //do things
-                                    popup.dismiss();
-                                }
-                            });
-                            alertDialogBuilder.setMessage("Test is finished.");
-                            popup  =   alertDialogBuilder.show();
-                            mTvMinBreath.setText(""+ob.getMin());
-                            mTvMaxBreath.setText(""+ob.getMax());
-                            mTvAvgBreath.setText(""+ob.getAvg());
-                            // Toast.makeText(AndroidUSBSerialMonitorLite.this, "ageInMonths="+ageInMonths+"Maxage="+ob.getMax(), Toast.LENGTH_LONG).show();
-                            if(hasPnemonia(ob.getMax(), ageInMonths)){
-                                conclusion.setText("Pneumonia detected!");
-                                conclusion.setTextColor(Color.RED);
-                            }
-                            else{
-                                conclusion.setText("Pneumonia not detected!");
-                                conclusion.setTextColor(Color.GREEN);
-                            }
-                            String age = ""+babyAge;
-                            ResultModel rs = new ResultModel(babyName,age,getCurrentTimeStamp(),ob.getMin(),ob.getMax(),ob.getAvg());
-                            prefsEditor.putString("newEntry",ResultModel.getJsonStringOfObject(rs));
-                            prefsEditor.commit();
+                           doOnFinished();
                         }
 
-                    }.start();
-                    feedMultipleMock();
+                    };
+                    ct.start();
+                    feedMultiple();
                     openUsbSerial();
-                    btWrite.setText("Stop");
+                    testsRunning=true;
+                    btWrite.setText("STOP");
 
                 }
             });
@@ -321,7 +314,7 @@ public class AndroidUSBSerialMonitorLite extends Activity  implements OnChartVal
                             closeUsbSerial();
                         }
                     }.start();
-                    openUsbSerial();
+                   // openUsbSerial();
                     //feedMultiple();
 
                    /*
@@ -359,7 +352,8 @@ public class AndroidUSBSerialMonitorLite extends Activity  implements OnChartVal
         mChart.setPinchZoom(true);
 
         // set an alternative background color
-        mChart.setBackgroundColor(Color.LTGRAY);
+        mChart.setBackgroundColor(Color.BLACK);
+        mChart.setAlpha(0.7f);
 
         mChart.setOnChartValueSelectedListener(this);
         LineData data = new LineData();
@@ -400,9 +394,66 @@ public class AndroidUSBSerialMonitorLite extends Activity  implements OnChartVal
 
     }
 
+    public void doOnFinished(){
+        ct.cancel();
+        if(mLoopThred!=null)
+             mLoopThred.interrupt();
+        btWrite.setText("Start");
+        currentRpm=-999;
+        mStop = true;
+        closeUsbSerial();
+        mTvtimeRemain.setText("Finished.");
+        mTvtotalReadings.setText("154");
+        BreathCounts ob=getMinandMax(breathCount);
+        mTvSerial.setText("");
+        mText.setLength(0);
+        alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                //do things
+                popup.dismiss();
+            }
+        });
+        alertDialogBuilder.setMessage("Test is finished.");
+        alertDialogBuilder.setTitle("Xethru");
+        popup  =   alertDialogBuilder.show();
+        mTvMinBreath.setText(""+ob.getMin());
+        mTvMaxBreath.setText(""+ob.getMax());
+        mTvAvgBreath.setText(""+ob.getAvg());
+        // Toast.makeText(AndroidUSBSerialMonitorLite.this, "ageInMonths="+ageInMonths+"Maxage="+ob.getMax(), Toast.LENGTH_LONG).show();
+        if(hasPnemonia(ob.getMax(), ageInMonths)){
+            conclusion.setText("Pneumonia detected!");
+            conclusion.setTextColor(Color.RED);
+        }
+        else{
+            conclusion.setText("Pneumonia not detected!");
+            conclusion.setTextColor(Color.GREEN);
+        }
+        try {
+            MediaPlayer player= MediaPlayer.create(AndroidUSBSerialMonitorLite.this,R.raw.beep_detected);
+            player.start();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        String age = ""+babyAge;
+        mTvAge.setText(age);
+        mTvName.setText(babyName);
+        ResultModel rs = new ResultModel(babyName,age,getCurrentTimeStamp(),ob.getMin(),ob.getMax(),ob.getAvg());
+        set = mPrefs.getStringSet("ResultsHistory", null);
+        if(set==null)
+            set= new HashSet<String>();
+
+        set.add(ResultModel.getJsonStringOfObject(rs));
+        prefsEditor.putStringSet("ResultsHistory",set);
+        prefsEditor.putString("newEntry",ResultModel.getJsonStringOfObject(rs));
+        prefsEditor.commit();
+        testsRunning = false;
+    }
+
     private int year = 2015;
-    public String getCurrentTimeStamp() {
-        return new SimpleDateFormat("dd-MM-yyyy HH:mm aa").format(new Date());
+    public long getCurrentTimeStamp() {
+        //return new SimpleDateFormat("dd-MM-yyyy HH:mm aa").format(new Date());
+        return new Date().getTime();
     }
 
     private void addEntry(int value) {
@@ -425,7 +476,7 @@ public class AndroidUSBSerialMonitorLite extends Activity  implements OnChartVal
             // add a new x-value first
             // data.addXValue(mMonths[data.getXValCount() % 12] + " "
             //         + (year + data.getXValCount() / 12));
-            data.addXValue(set.getEntryCount()+"");
+            data.addXValue(set.getEntryCount()/1000+"");
             data.addEntry(new Entry((float) value, set.getEntryCount()), 0);
 
             // let the chart know it's data has changed
@@ -452,7 +503,7 @@ public class AndroidUSBSerialMonitorLite extends Activity  implements OnChartVal
         set.setCircleColor(Color.BLACK);
         set.setLineWidth(4f);
         set.setCircleRadius(1f);
-        set.setFillAlpha(100);
+        set.setFillAlpha(50);
         set.setFillColor(Color.RED);
         set.setHighLightColor(Color.rgb(244, 117, 117));
         set.setValueTextColor(Color.WHITE);
@@ -524,6 +575,7 @@ public class AndroidUSBSerialMonitorLite extends Activity  implements OnChartVal
                 mTvAge.setText(age);
                 dialog.dismiss();
                 breathCount.clear();
+                currentRpm=0;
                 new CountDownTimer(180000,1000) {
                     int i=0;
                     public void onTick(long millisUntilFinished) {
@@ -664,7 +716,7 @@ public class AndroidUSBSerialMonitorLite extends Activity  implements OnChartVal
 
             res = pref.getString("fontsize_list", Integer.toString(12));
             mTextFontSize = Integer.valueOf(res);
-            mTvSerial.setTextSize(mTextFontSize);
+           // mTvSerial.setTextSize(mTextFontSize);
 
             res = pref.getString("typeface_list", Integer.toString(3));
             switch(Integer.valueOf(res)){
@@ -772,8 +824,11 @@ public class AndroidUSBSerialMonitorLite extends Activity  implements OnChartVal
         mSerial.end();
         mStop = true;
         unregisterReceiver(mUsbReceiver);
+        currentRpm=-999;
         super.onDestroy();
     }
+
+
 
     private void mainloop() {
         mStop = false;
@@ -784,7 +839,8 @@ public class AndroidUSBSerialMonitorLite extends Activity  implements OnChartVal
         if (SHOW_DEBUG) {
             Log.d(TAG, "start mainloop");
         }
-        new Thread(mLoop).start();
+        mLoopThred= new Thread(mLoop);
+        mLoopThred.start();
     }
 
     private Runnable mLoop = new Runnable() {
@@ -994,10 +1050,11 @@ public class AndroidUSBSerialMonitorLite extends Activity  implements OnChartVal
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            if(currentRpm==-999)
+                            if(currentRpm==-999 || mStop==true)
                                 stopThread(this);
-                            else
+                            else{
                                 addEntry(currentRpm);
+                               }
                         }
                     });
 
@@ -1023,8 +1080,13 @@ public class AndroidUSBSerialMonitorLite extends Activity  implements OnChartVal
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            int Random =20 +  (int)(Math.random()*(50));
+                            if(currentRpm==-999)
+                                stopThread(this);
+                            else {
+                                int Random = 20 + (int) (Math.random() * (50));
                                 addEntry(Random);
+                                currentRpm = Random;
+                            }
                         }
                     });
 
@@ -1041,15 +1103,19 @@ public class AndroidUSBSerialMonitorLite extends Activity  implements OnChartVal
     private Object getStatus(String byteData) {
         // TODO Auto-generated method stub
         if(byteData.equals("00"))
-            return "Reading...";
+            return "Breathing";
         if(byteData.equals("02"))
-            return "Reading..";
+            return "Movement tracking";
         if(byteData.equals("04"))
             return "Initializing..";
+        if(byteData.equals("03"))
+            return "No movement";
         if(byteData.equals("01"))
-            return "Reading";
+            return "Movement";
         return "Reading";
     }
+
+
 
     void loadDefaultSettingValues() {
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
@@ -1156,10 +1222,11 @@ public class AndroidUSBSerialMonitorLite extends Activity  implements OnChartVal
     }
 
     protected void onNewIntent(Intent intent) {
+       // Toast.makeText(AndroidUSBSerialMonitorLite.this, "new intnet", Toast.LENGTH_SHORT).show();
         if (SHOW_DEBUG) {
             Log.d(TAG, "onNewIntent");
         }
-
+            mStop=true;
         //openUsbSerial();
     };
 
@@ -1181,6 +1248,7 @@ public class AndroidUSBSerialMonitorLite extends Activity  implements OnChartVal
             String action = intent.getAction();
 
             if (UsbManager.ACTION_USB_DEVICE_ATTACHED.equals(action)) {
+                usbConnected=true;
                 if (SHOW_DEBUG) {
                     Log.d(TAG, "Device attached");
                 }
@@ -1191,7 +1259,7 @@ public class AndroidUSBSerialMonitorLite extends Activity  implements OnChartVal
                     mBaudrate = loadDefaultBaudrate();
                     mSerial.begin(mBaudrate);
                     loadDefaultSettingValues();
-                    mTvSerial.setTextSize(mTextFontSize);
+                   // mTvSerial.setTextSize(mTextFontSize);
                 }
                 if (!mRunningMainLoop) {
                     if (SHOW_DEBUG) {
@@ -1199,14 +1267,18 @@ public class AndroidUSBSerialMonitorLite extends Activity  implements OnChartVal
                     }
                    // mainloop();
                 }
+
             } else if (UsbManager.ACTION_USB_DEVICE_DETACHED.equals(action)) {
                 if (SHOW_DEBUG) {
                     Log.d(TAG, "Device detached");
                 }
                 mStop = true;
+                if(testsRunning)
+                     doOnFinished();
                 detachedUi();
                 mSerial.usbDetached(intent);
                 mSerial.end();
+                usbConnected=false;
             } else if (ACTION_USB_PERMISSION.equals(action)) {
                 if (SHOW_DEBUG) {
                     Log.d(TAG, "Request permission");
@@ -1219,7 +1291,7 @@ public class AndroidUSBSerialMonitorLite extends Activity  implements OnChartVal
                         mBaudrate = loadDefaultBaudrate();
                         mSerial.begin(mBaudrate);
                         loadDefaultSettingValues();
-                        mTvSerial.setTextSize(mTextFontSize);
+                       // mTvSerial.setTextSize(mTextFontSize);
                     }
                 }
                 if (!mRunningMainLoop) {
