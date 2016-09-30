@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="D:\xethruLap\fTDriver\src\main\assets"/><source path="D:\xethruLap\fTDriver\build\generated\assets\shaders\release"/></dataSet><dataSet config="release"><source path="D:\xethruLap\fTDriver\src\release\assets"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="E:\XethruLapTop\fTDriver\src\main\assets"/><source path="E:\XethruLapTop\fTDriver\build\generated\assets\shaders\release"/></dataSet><dataSet config="release"><source path="E:\XethruLapTop\fTDriver\src\release\assets"/></dataSet></merger>

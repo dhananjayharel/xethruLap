@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/androidUSBSerialMonitorLite/androidUSBSerialMonitorLite.iml" filepath="$PROJECT_DIR$/androidUSBSerialMonitorLite/androidUSBSerialMonitorLite.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PneumoniaDetection/PneumoniaDetection.iml" filepath="$PROJECT_DIR$/PneumoniaDetection/PneumoniaDetection.iml" />
+      <module fileurl="file://$PROJECT_DIR$/XethruLapTop.iml" filepath="$PROJECT_DIR$/XethruLapTop.iml" />
       <module fileurl="file://$PROJECT_DIR$/fTDriver/fTDriver.iml" filepath="$PROJECT_DIR$/fTDriver/fTDriver.iml" />
       <module fileurl="file://$PROJECT_DIR$/xethruLap.iml" filepath="$PROJECT_DIR$/xethruLap.iml" />
     </modules>

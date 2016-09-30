@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#ffffff"
+    android:padding="10dp"
+    >
+ <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:padding="5dp"
+            android:orientation="vertical" >
+<LinearLayout
+            
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:orientation="horizontal" >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:typeface="monospace"
+                
+                android:layout_gravity="left"
+                android:textStyle="bold"
+               android:textColor="@android:color/black"
+                 android:textSize="30dp"
+                android:text="Please fill the following details." /> 
+        
+
+        </LinearLayout>
+     
+ <LinearLayout
+            
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:orientation="horizontal" >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:typeface="monospace"
+                 android:layout_weight="1"
+                android:layout_gravity="left"
+                android:textStyle="bold"
+               android:textColor="@android:color/black"
+                 android:textSize="30dp"
+                android:text="Name:" /> 
+
+            <TextView
+                android:id="@+id/inputName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_weight="1"
+                android:editable="true"
+          android:singleLine="true"
+          android:inputType="text"
+          android:focusable="true"
+          android:clickable="true"
+          android:focusableInTouchMode="true"
+          android:cursorVisible="true"
+                android:hint="Name"
+                android:maxLines="1"
+                android:textColor="@android:color/black"
+                android:textSize="30dp"
+                android:typeface="monospace" />
+
+        </LinearLayout>
+
+<LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:orientation="horizontal" >
+            <TextView
+              
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:typeface="monospace"
+                 android:layout_weight="1"
+                android:layout_gravity="left"
+                android:textStyle="bold"
+               android:textColor="@android:color/black"
+                 android:textSize="30dp"
+                android:text="Age:" /> 
+
+            <TextView
+                android:id="@+id/inputAge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_weight="1"
+                android:editable="true"
+          android:singleLine="true"
+          android:inputType="text"
+          android:cursorVisible="true"
+          android:focusable="true"
+          android:clickable="true"
+          android:focusableInTouchMode="true"
+                android:hint="in months"
+                android:maxLines="1"
+                android:textColor="@android:color/black"
+                android:textSize="30dp"
+                android:typeface="monospace" />
+
+        </LinearLayout>
+
+ <LinearLayout
+     android:id="@+id/LinearLayout"
+     android:layout_width="fill_parent"
+     android:layout_height="wrap_content"
+     android:gravity="center_horizontal"
+     android:orientation="horizontal"
+     android:padding="5dp" >
+
+<Button
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Start the test"
+    android:id="@+id/btn_dialog"
+    android:gravity="center"
+    android:padding="10dp"
+    android:textColor="#ffffffff" />
+</LinearLayout>
+</LinearLayout>
+</LinearLayout>

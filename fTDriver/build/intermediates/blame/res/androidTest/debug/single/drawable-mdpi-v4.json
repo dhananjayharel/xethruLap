@@ -1,10 +1,6 @@
 [
     {
-        "merged": "D:\\SerialPortExample-master\\SerialPortExample-master\\AndroidUSBSerialMonitorLite4\\fTDriver\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-mdpi-v4\\ic_launcher.png",
-        "source": "D:\\SerialPortExample-master\\SerialPortExample-master\\AndroidUSBSerialMonitorLite4\\fTDriver\\build\\intermediates\\bundles\\debug\\res\\drawable-mdpi-v4\\ic_launcher.png"
-    },
-    {
-        "merged": "D:\\xethruLap\\fTDriver\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-mdpi-v4\\ic_launcher.png",
-        "source": "D:\\xethruLap\\fTDriver\\build\\intermediates\\bundles\\debug\\res\\drawable-mdpi-v4\\ic_launcher.png"
+        "merged": "E:\\XethruLapTop\\fTDriver\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-mdpi-v4\\ic_launcher.png",
+        "source": "E:\\XethruLapTop\\fTDriver\\build\\intermediates\\bundles\\debug\\res\\drawable-mdpi-v4\\ic_launcher.png"
     }
 ]

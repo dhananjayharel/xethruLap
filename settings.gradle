@@ -1,2 +1,2 @@
 include ':fTDriver'
-include ':androidUSBSerialMonitorLite'
+include ':PneumoniaDetection'

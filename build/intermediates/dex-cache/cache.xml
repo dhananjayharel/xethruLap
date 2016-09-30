@@ -2,25 +2,31 @@
 <items version="2" >
 
     <item
-        jar="D:\xethruLap\androidUSBSerialMonitorLite\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="E:\XethruLapTop\PneumoniaDetection\build\intermediates\exploded-aar\XethruLapTop\fTDriver\unspecified\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
         revision="23.0.2"
-        sha1="9df19a89253c0d0d4c62f7652c6d96726d9850d1">
-        <dex dex="D:\xethruLap\androidUSBSerialMonitorLite\build\intermediates\pre-dexed\debug\instant-run_102142a8e56e495e20c40ecef04cd7ee5157443e.jar" />
+        sha1="c843633a14f34dc7e204edb3b04c23762522eb16">
+        <dex dex="E:\XethruLapTop\PneumoniaDetection\build\intermediates\pre-dexed\debug\XethruLapTop-fTDriver-unspecified_6a1f5d04a9b29070533fe5e8649e5344dec917c0.jar" />
     </item>
     <item
-        jar="D:\SerialPortExample-master\SerialPortExample-master\AndroidUSBSerialMonitorLite4\libs\mpandroidchartlibrary-2-2-4.jar"
+        is-multidex="false"
+        jar="E:\XethruLapTop\libs\mpandroidchartlibrary-2-2-4.jar"
         jumboMode="true"
+        optimize="true"
         revision="23.0.2"
         sha1="e5455fb794bfcbeb75da252dffd907794614f7fd">
-        <dex dex="D:\xethruLap\androidUSBSerialMonitorLite\build\intermediates\pre-dexed\debug\mpandroidchartlibrary-2-2-4_10d7ffea4dc3ba6ef459c77d2449afea9a73afac.jar" />
+        <dex dex="E:\XethruLapTop\PneumoniaDetection\build\intermediates\pre-dexed\debug\mpandroidchartlibrary-2-2-4_92dd9e9d00c610115cf0599fc53581c6d0700a96.jar" />
     </item>
     <item
-        jar="D:\xethruLap\androidUSBSerialMonitorLite\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="E:\XethruLapTop\libs\mpandroidchartlibrary-2-2-4.jar"
+        jumboMode="false"
+        optimize="true"
         revision="23.0.2"
-        sha1="809ac40b3cf75f77ca73bb4d5393237b4110611c">
-        <dex dex="D:\xethruLap\androidUSBSerialMonitorLite\build\intermediates\pre-dexed\debug\instant-run-bootstrap_543a4869413d7e9ffa551786a691a4d9e34beb9c.jar" />
+        sha1="e5455fb794bfcbeb75da252dffd907794614f7fd">
+        <dex dex="E:\XethruLapTop\PneumoniaDetection\build\intermediates\pre-dexed\debug\mpandroidchartlibrary-2-2-4_92dd9e9d00c610115cf0599fc53581c6d0700a96.jar" />
     </item>
 
 </items>
